@@ -1,0 +1,32 @@
+// Auto-generated: Arabic text from a public Quran text dataset.
+// Fill in your own Roman Urdu translation between the quotes below.
+var surah092 = {
+  number: 92,
+  nameArabic: " al-Lail ",
+  nameEnglish: "Al-Layl",
+  meaning: "The Night",
+  totalAyahs: 21,
+  ayahs: [
+    { number: 1, arabic: "وَٱلَّيْلِ إِذَا يَغْشَىٰ", transliteration: "Waallayli itha yaghsha", transliterationB: "Wallaili izaa yaghshaa", english: "By the Night as it conceals (the light)", romanUrdu: "Kasam hai raat ki jabke woh chaa jaaye" },
+    { number: 2, arabic: "وَٱلنَّهَارِ إِذَا تَجَلَّىٰ", transliteration: "Waalnnahari itha tajalla", transliterationB: "Wannahaari izaa tajalla", english: "By the Day as it appears in glory", romanUrdu: "Aur din ki jabke woh roshan ho" },
+    { number: 3, arabic: "وَمَا خَلَقَ ٱلذَّكَرَ وَٱلْأُنثَىٰٓ", transliteration: "Wama khalaqa alththakara waalontha", transliterationB: "Wa maa khalaqaz zakara wal unthaa", english: "By (the mystery of) the creation of male and female", romanUrdu: "Aur us zaat ki jisne nar(male) aur maada(female) ko paida kiya" },
+    { number: 4, arabic: "إِنَّ سَعْيَكُمْ لَشَتَّىٰ", transliteration: "Inna saAAyakum lashatta", transliterationB: "Inna sa'yakum lashattaa", english: "Verily, (the ends) ye strive for are diverse", romanUrdu: "Dar haqeeqat tum logon ki koshishein mukhtalif qism ki hai" },
+    { number: 5, arabic: "فَأَمَّا مَنْ أَعْطَىٰ وَٱتَّقَىٰ", transliteration: "Faamma man aAAta waittaqa", transliterationB: "Fa ammaa man a'taa wattaqaa", english: "So he who gives (in charity) and fears (Allah)", romanUrdu: "To jisne (rah e khuda mein) maal diya aur (khuda ki nafarmani se) parhez kiya" },
+    { number: 6, arabic: "وَصَدَّقَ بِٱلْحُسْنَىٰ", transliteration: "Wasaddaqa bialhusna", transliterationB: "Wa saddaqa bil husnaa", english: "And (in all sincerity) testifies to the best", romanUrdu: "Aur bhalayi ko sach mana" },
+    { number: 7, arabic: "فَسَنُيَسِّرُهُۥ لِلْيُسْرَىٰ", transliteration: "Fasanuyassiruhu lilyusra", transliterationB: "Fasanu yassiruhoo lilyusraa", english: "We will indeed make smooth for him the path to Bliss", romanUrdu: "Usko hum aasan raastey kay liye sahulat denge" },
+    { number: 8, arabic: "وَأَمَّا مَنۢ بَخِلَ وَٱسْتَغْنَىٰ", transliteration: "Waamma man bakhila waistaghna", transliterationB: "Wa ammaa mam bakhila wastaghnaa", english: "But he who is a greedy miser and thinks himself self-sufficient", romanUrdu: "Aur jisne bukhl(kanjoosi) kiya aur (apney khuda se) be niyazi(self-sufficient/independent) barti" },
+    { number: 9, arabic: "وَكَذَّبَ بِٱلْحُسْنَىٰ", transliteration: "Wakaththaba bialhusna", transliterationB: "Wa kazzaba bil husnaa", english: "And gives the lie to the best", romanUrdu: "aur bhalayi ko jhutlaya" },
+    { number: 10, arabic: "فَسَنُيَسِّرُهُۥ لِلْعُسْرَىٰ", transliteration: "Fasanuyassiruhu lilAAusra", transliterationB: "Fasanu yassiruhoo lil'usraa", english: "We will indeed make smooth for him the path to Misery", romanUrdu: "Usko hum sakht rastey kay liye sahulat dengey" },
+    { number: 11, arabic: "وَمَا يُغْنِى عَنْهُ مَالُهُۥٓ إِذَا تَرَدَّىٰٓ", transliteration: "Wama yughnee AAanhu maluhu itha taradda", transliterationB: "Wa maa yughnee 'anhu maaluhooo izaa taraddaa", english: "Nor will his wealth profit him when he falls headlong (into the Pit)", romanUrdu: "Aur uska maal aakhir uske kis kaam aayega jabke woh halaq ho jaye" },
+    { number: 12, arabic: "إِنَّ عَلَيْنَا لَلْهُدَىٰ", transliteration: "Inna AAalayna lalhuda", transliterationB: "Inna 'alainaa lal hudaa", english: "Verily We take upon Ourselves to guide", romanUrdu: "Beshak rasta batana hamare zimmey hai" },
+    { number: 13, arabic: "وَإِنَّ لَنَا لَلْءَاخِرَةَ وَٱلْأُولَىٰ", transliteration: "Wainna lana lalakhirata waaloola", transliterationB: "Wa inna lanaa lal Aakhirata wal oolaa", english: "And verily unto Us (belong) the End and the Beginning", romanUrdu: "aur dar haqeeqat aakhirat aur duniya dono kay hum hi malik hai" },
+    { number: 14, arabic: "فَأَنذَرْتُكُمْ نَارًۭا تَلَظَّىٰ", transliteration: "Faanthartukum naran talaththa", transliterationB: "Fa anzartukum naaran talazzaa", english: "Therefore do I warn you of a Fire blazing fiercely", romanUrdu: "Pas maine tumko khabardar kar diya hai bhadakti hui aag se" },
+    { number: 15, arabic: "لَا يَصْلَىٰهَآ إِلَّا ٱلْأَشْقَى", transliteration: "La yaslaha illa alashqa", transliterationB: "Laa yaslaahaaa illal ashqaa", english: "None shall reach it but those most unfortunate ones", romanUrdu: "Usmein nahin jhulsega magar woh intihayi badbakth" },
+    { number: 16, arabic: "ٱلَّذِى كَذَّبَ وَتَوَلَّىٰ", transliteration: "Allathee kaththaba watawalla", transliterationB: "Allazee kazzaba wa tawallaa", english: "Who give the lie to Truth and turn their backs", romanUrdu: "jisne jhutlaya aur mooh phera" },
+    { number: 17, arabic: "وَسَيُجَنَّبُهَا ٱلْأَتْقَى", transliteration: "Wasayujannabuha alatqa", transliterationB: "Wa sa yujannnabuhal atqaa", english: "But those most devoted to Allah shall be removed far from it", romanUrdu: "Aur usse door rakkha jayega woh nihayat parhezgaar" },
+    { number: 18, arabic: "ٱلَّذِى يُؤْتِى مَالَهُۥ يَتَزَكَّىٰ", transliteration: "Allathee yutee malahu yatazakka", transliterationB: "Allazee yu'tee maalahoo yatazakkaa", english: "Those who spend their wealth for increase in self-purification", romanUrdu: "Jo paakiza honay ki khatir apna maal deta hai" },
+    { number: 19, arabic: "وَمَا لِأَحَدٍ عِندَهُۥ مِن نِّعْمَةٍۢ تُجْزَىٰٓ", transliteration: "Wama liahadin AAindahu min niAAmatin tujza", transliterationB: "Wa maa li ahadin 'indahoo min ni'matin tujzaaa", english: "And have in their minds no favour from anyone for which a reward is expected in return", romanUrdu: "Uspar kisi ka koi ehsan nahin hai jiska badla usey dena ho" },
+    { number: 20, arabic: "إِلَّا ٱبْتِغَآءَ وَجْهِ رَبِّهِ ٱلْأَعْلَىٰ", transliteration: "Illa ibtighaa wajhi rabbihi alaAAla", transliterationB: "Illab tighaaa'a wajhi rabbihil a 'laa", english: "But only the desire to seek for the Countenance of their Lord Most High", romanUrdu: "Woh to sirf apne Rubb-e-bartrar ki raza joii ke liye yeh kaam karta hai" },
+    { number: 21, arabic: "وَلَسَوْفَ يَرْضَىٰ", transliteration: "Walasawfa yarda", transliterationB: "Wa lasawfa yardaa", english: "And soon will they attain (complete) satisfaction", romanUrdu: "Aur zaroor woh (us se) khush hoga" }
+  ]
+};

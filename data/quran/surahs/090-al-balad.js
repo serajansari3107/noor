@@ -1,0 +1,31 @@
+// Auto-generated: Arabic text from a public Quran text dataset.
+// Fill in your own Roman Urdu translation between the quotes below.
+var surah090 = {
+  number: 90,
+  nameArabic: "al-Balad",
+  nameEnglish: "Al-Balad",
+  meaning: "The City",
+  totalAyahs: 20,
+  ayahs: [
+    { number: 1, arabic: "لَآ أُقْسِمُ بِهَٰذَا ٱلْبَلَدِ", transliteration: "La oqsimu bihatha albaladi", transliterationB: "Laaa uqsimu bihaazal balad", english: "I do call to witness this City", romanUrdu: "Nahin mai kasam khata hoon is shehar(city) ki" },
+    { number: 2, arabic: "وَأَنتَ حِلٌّۢ بِهَٰذَا ٱلْبَلَدِ", transliteration: "Waanta hillun bihatha albaladi", transliterationB: "Wa anta hillum bihaazal balad", english: "And thou art a freeman of this City", romanUrdu: "Aur haal yeh hai ke (Aey nabi) is shehar mein tumko halal kar liya gaya hai" },
+    { number: 3, arabic: "وَوَالِدٍۢ وَمَا وَلَدَ", transliteration: "Wawalidin wama walada", transliterationB: "Wa waalidinw wa maa walad", english: "And (the mystic ties of) parent and child", romanUrdu: "Aur kasam khata hoon baap(Adam) ki aur us aulad ki jo ussey paida hui" },
+    { number: 4, arabic: "لَقَدْ خَلَقْنَا ٱلْإِنسَٰنَ فِى كَبَدٍ", transliteration: "Laqad khalaqna alinsana fee kabadin", transliterationB: "Laqad khalaqnal insaana fee kabad", english: "Verily We have created man into toil and struggle", romanUrdu: "Dar haqeeqat humne Insan ko mushakkat mein paida kiya hai" },
+    { number: 5, arabic: "أَيَحْسَبُ أَن لَّن يَقْدِرَ عَلَيْهِ أَحَدٌۭ", transliteration: "Ayahsabu an lan yaqdira AAalayhi ahadun", transliterationB: "Ayahsabu al-lai yaqdira 'alaihi ahad", english: "Thinketh he, that none hath power over him", romanUrdu: "Kya usne yeh samajh rakhha hai kay uspar koi qaabu na paa sakega" },
+    { number: 6, arabic: "يَقُولُ أَهْلَكْتُ مَالًۭا لُّبَدًا", transliteration: "Yaqoolu ahlaktu malan lubadan", transliterationB: "Yaqoolu ahlaktu maalal lubadaa", english: "He may say (boastfully); Wealth have I squandered in abundance", romanUrdu: "Kehta hai ke maine dhairon maal udaa diya" },
+    { number: 7, arabic: "أَيَحْسَبُ أَن لَّمْ يَرَهُۥٓ أَحَدٌ", transliteration: "Ayahsabu an lam yarahu ahadun", transliterationB: "Ayahsabu al lam yarahooo ahad", english: "Thinketh he that none beholdeth him", romanUrdu: "Kya woh samajhta hai kay kisi ne usko nahin dekha" },
+    { number: 8, arabic: "أَلَمْ نَجْعَل لَّهُۥ عَيْنَيْنِ", transliteration: "Alam najAAal lahu AAaynayni", transliterationB: "Alam naj'al lahoo 'aynayn", english: "Have We not made for him a pair of eyes", romanUrdu: "Kya humne usey do aankhein" },
+    { number: 9, arabic: "وَلِسَانًۭا وَشَفَتَيْنِ", transliteration: "Walisanan washafatayni", transliterationB: "Wa lisaananw wa shafatayn", english: "And a tongue, and a pair of lips", romanUrdu: "Aur ek zubaan aur do honth nahin diye" },
+    { number: 10, arabic: "وَهَدَيْنَٰهُ ٱلنَّجْدَيْنِ", transliteration: "Wahadaynahu alnnajdayni", transliterationB: "Wa hadaynaahun najdayn", english: "And shown him the two highways", romanUrdu: "Aur dono numayan raste usey (nahin) dikha diye" },
+    { number: 11, arabic: "فَلَا ٱقْتَحَمَ ٱلْعَقَبَةَ", transliteration: "Fala iqtahama alAAaqabata", transliterationB: "Falaq tahamal-'aqabah", english: "But he hath made no haste on the path that is steep", romanUrdu: "Magar usne dushwar guzar ghati(steep) se guzarne ki himmat na ki" },
+    { number: 12, arabic: "وَمَآ أَدْرَىٰكَ مَا ٱلْعَقَبَةُ", transliteration: "Wama adraka ma alAAaqabatu", transliterationB: "Wa maaa adraaka mal'aqabah", english: "And what will explain to thee the path that is steep", romanUrdu: "Aur tum kya jaano kay kya hai woh dushwar guzar ghaati" },
+    { number: 13, arabic: "فَكُّ رَقَبَةٍ", transliteration: "Fakku raqabatin", transliterationB: "Fakku raqabah", english: "(It is:) freeing the bondman", romanUrdu: "Kisi gardan ko gulami se chudana" },
+    { number: 14, arabic: "أَوْ إِطْعَٰمٌۭ فِى يَوْمٍۢ ذِى مَسْغَبَةٍۢ", transliteration: "Aw itAAamun fee yawmin thee masghabatin", transliterationB: "Aw it'aamun fee yawmin zee masghabah", english: "Or the giving of food in a day of privation", romanUrdu: "Ya faake ke din" },
+    { number: 15, arabic: "يَتِيمًۭا ذَا مَقْرَبَةٍ", transliteration: "Yateeman tha maqrabatin", transliterationB: "Yateeman zaa maqrabah", english: "To the orphan with claims of relationship", romanUrdu: "kisi qareebi yateem" },
+    { number: 16, arabic: "أَوْ مِسْكِينًۭا ذَا مَتْرَبَةٍۢ", transliteration: "Aw miskeenan tha matrabatin", transliterationB: "Aw miskeenan zaa matrabah", english: "Or to the indigent (down) in the dust", romanUrdu: "Ya khaak nasheen miskeen ko khana khilana" },
+    { number: 17, arabic: "ثُمَّ كَانَ مِنَ ٱلَّذِينَ ءَامَنُوا۟ وَتَوَاصَوْا۟ بِٱلصَّبْرِ وَتَوَاصَوْا۟ بِٱلْمَرْحَمَةِ", transliteration: "Thumma kana mina allatheena amanoo watawasaw bialssabri watawasaw bialmarhamati", transliterationB: "Summa kaana minal lazeena aamanoo wa tawaasaw bissabri wa tawaasaw bilmarhamah", english: "Then will he be of those who believe, and enjoin patience, (constancy, and self-restraint), and enjoin deeds of kindness and compassion", romanUrdu: "Phir (iske saath yeh kay) aadmi un logon mein shamil ho jo imaan laye aur jinhon ne ek dusrey ko sabr aur (khalq-e-khuda par) raham ki talqeen ki" },
+    { number: 18, arabic: "أُو۟لَٰٓئِكَ أَصْحَٰبُ ٱلْمَيْمَنَةِ", transliteration: "Olaika ashabu almaymanati", transliterationB: "Ulaaa'ika As-haabul maimanah", english: "Such are the Companions of the Right Hand", romanUrdu: "Yeh log hain dayein baazu(right hand) waley" },
+    { number: 19, arabic: "وَٱلَّذِينَ كَفَرُوا۟ بِـَٔايَٰتِنَا هُمْ أَصْحَٰبُ ٱلْمَشْـَٔمَةِ", transliteration: "Waallatheena kafaroo biayatina hum ashabu almashamati", transliterationB: "Wallazeena kafaroo bi aayaatinaa hum as-haabul Mash'amah", english: "But those who reject Our Signs, they are the (unhappy) Companions of the Left Hand", romanUrdu: "Aur jinhon ne hamari aayat ko mann-ney se inkar kiya woh bayen bazu(left hand) waley hain" },
+    { number: 20, arabic: "عَلَيْهِمْ نَارٌۭ مُّؤْصَدَةٌۢ", transliteration: "AAalayhim narun musadatun", transliterationB: "Alaihim naarum mu'sadah", english: "On them will be Fire vaulted over (all round)", romanUrdu: "Un par aag chaayi hui hogi" }
+  ]
+};
