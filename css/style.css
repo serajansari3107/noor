@@ -936,3 +936,507 @@ html[data-theme="dark"] .tafsir-surah-card,html[data-theme="dark"] .tafsir-ayah-
 html[data-theme="dark"] .tafsir-ayah-arabic{color:#f7f0df!important}html[data-theme="dark"] .tafsir-translation-grid>div{background:#17382d!important}html[data-theme="dark"] .tafsir-surah-number,html[data-theme="dark"] .tafsir-ayah-badge{background:#214b3b!important;color:#e5c77e!important}html[data-theme="dark"] .tafsir-verified{background:#214b3b!important;color:#cde7d7!important}
 @media(max-width:900px){.tafsir-surah-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.tafsir-surah-grid{grid-template-columns:1fr;gap:9px}.tafsir-surah-card{padding:13px}.tafsir-translation-grid{grid-template-columns:1fr}.tafsir-page .tafsir-library-tools{align-items:stretch;flex-wrap:wrap}.tafsir-page .tafsir-library-tools input{flex-basis:100%}.tafsir-detail-tools{gap:8px}.tafsir-detail-tools .button{flex:1}}
+
+
+/* Step 28 — calm, consistent page opening and Quran navigation */
+@keyframes noorPageEnter {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.section-page { animation: noorPageEnter .34s cubic-bezier(.2,.7,.2,1) both; will-change: opacity, transform; }
+.surah-card, .juz-card, .section-tile, .hadith-book-card, .hadith-entry, .ayah-card {
+  transition: opacity .22s ease, transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.surah-card:active, .juz-card:active, .section-tile:active { transform: scale(.985); }
+.surah-pagination { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 16px; padding:10px 12px; border:1px solid var(--line); background:var(--paper); }
+.surah-pagination button { min-height:36px; padding:8px 12px; border:1px solid #DAD8CB; background:#FFFEFA; color:var(--emerald); font-family:var(--sans); font-size:10px; font-weight:600; line-height:1.2; cursor:pointer; transition:background .2s ease, color .2s ease, transform .2s ease; }
+.surah-pagination button:hover:not(:disabled) { background:var(--emerald); color:#fff; transform:translateY(-1px); }
+.surah-pagination button:disabled { opacity:.35; cursor:not-allowed; }
+.surah-pagination-count { color:var(--muted); font-size:10px; font-weight:700; white-space:nowrap; }
+@media (max-width:560px) {
+  .surah-grid { grid-template-columns:minmax(0,1fr); }
+  .surah-pagination { gap:6px; padding:8px; }
+  .surah-pagination button { padding:8px; font-size:9px; }
+  .surah-pagination-count { font-size:9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-page { animation:none !important; }
+  .surah-card, .juz-card, .section-tile, .hadith-book-card, .hadith-entry, .ayah-card, .surah-pagination button { transition:none !important; }
+}
+
+
+/* Royal Purple theme: mirrors the complete existing dark-mode coverage. */
+/* Noor premium dark mode — Midnight Emerald & Gold */
+html[data-theme="royal"] { color-scheme: dark; }
+html[data-theme="royal"] body {
+  --ivory: #170D24;
+  --paper: #281638;
+  --paper-warm: #342044;
+  --emerald: #B58AE8;
+  --emerald-deep: #1D102D;
+  --emerald-soft: #432653;
+  --gold: #D9B56F;
+  --gold-light: #F2D9A0;
+  --ink: #F7F0FA;
+  --muted: #C5B5D0;
+  --line: #59406A;
+  background: #170D24;
+  color: #F7F0FA;
+  color-scheme: dark;
+}
+html[data-theme="royal"] body,
+html[data-theme="royal"] .site-header,
+html[data-theme="royal"] .section-view,
+html[data-theme="royal"] .section-page { background-color: #170D24; color: #F7F0FA; }
+html[data-theme="royal"] .announcement { background: #100817; color: #F0E8F4; }
+html[data-theme="royal"] .brand-mark,
+html[data-theme="royal"] .nav-link:hover,
+html[data-theme="royal"] .nav-link.active,
+html[data-theme="royal"] .eyebrow,
+html[data-theme="royal"] h1 em,
+html[data-theme="royal"] h2 em { color: #D9B56F; }
+html[data-theme="royal"] .brand-tagline,
+html[data-theme="royal"] .nav-link,
+html[data-theme="royal"] .hero-description,
+html[data-theme="royal"] .hero-trust p span,
+html[data-theme="royal"] .section-subtitle,
+html[data-theme="royal"] .section-description,
+html[data-theme="royal"] .muted,
+html[data-theme="royal"] .section-content p { color: #C8BBD0; }
+html[data-theme="royal"] .icon-button { color: #F2D9A0; border-color: #715786; background: #281638; }
+html[data-theme="royal"] .icon-button:hover { background: #503064; border-color: #D9B56F; }
+html[data-theme="royal"] .header-cta,
+html[data-theme="royal"] .button-primary { background: #7950A3; color: #FFFFFF; }
+html[data-theme="royal"] .button-primary:hover { background: #9165BD; }
+html[data-theme="royal"] .button-secondary { background: #281638; color: #F0E8F4; border-color: #715786; }
+html[data-theme="royal"] .button-secondary:hover { background: #432653; border-color: #D9B56F; }
+html[data-theme="royal"] .dropdown-menu { background: #281638; border-color: #59406A; box-shadow: 0 18px 50px rgba(0,0,0,.28); }
+html[data-theme="royal"] .dropdown-menu a:hover { background: #432653; color: #F2D9A0; }
+html[data-theme="royal"] .dropdown-menu small { color: #C5B5D0; }
+html[data-theme="royal"] .hero-trust .trust-avatars span { border-color: #170D24; background: #4C315F; color: #F2D9A0; }
+html[data-theme="royal"] .hero-art .arch-front { background: linear-gradient(155deg,#38204A,#281638 48%,#1D102D); border-color: #D9B56F; }
+html[data-theme="royal"] .hero-art .arch-front::before { border-color: rgba(214,181,109,.34); }
+html[data-theme="royal"] .hero-art .arch-front::after { border-color: rgba(214,181,109,.75); }
+html[data-theme="royal"] .hero-art .arch-arabic { color: #F2D9A0; }
+html[data-theme="royal"] .hero-art .arch-caption { color: #C8BBD0; }
+html[data-theme="royal"] .hero-art .floating-note { background: rgba(16,42,35,.96); border-color: #59406A; }
+html[data-theme="royal"] .hero-art .floating-note strong { color: #F7F0FA; }
+html[data-theme="royal"] .hero-art .floating-note small { color: #C8BBD0; }
+html[data-theme="royal"] .hero-art .note-icon-green { background: #432653; color: #D9B56F; }
+html[data-theme="royal"] .prayer-panel,
+html[data-theme="royal"] .section-tile,
+html[data-theme="royal"] .step4-panel,
+html[data-theme="royal"] .step4-learning-card,
+html[data-theme="royal"] .hadith-book-card,
+html[data-theme="royal"] .step4-story-card,
+html[data-theme="royal"] .step4-dua-card,
+html[data-theme="royal"] .step4-name-card,
+html[data-theme="royal"] .quran-reader,
+html[data-theme="royal"] .hadith-content,
+html[data-theme="royal"] .quran-layout,
+html[data-theme="royal"] .hadith-layout { background-color: #281638; border-color: #59406A; color: #F7F0FA; }
+html[data-theme="royal"] .prayer-panel { background: #301A40; }
+html[data-theme="royal"] .prayer-panel .prayer-time,
+html[data-theme="royal"] .prayer-panel .prayer-symbol,
+html[data-theme="royal"] .prayer-panel .panel-kicker { color: #E8C477; }
+html[data-theme="royal"] .prayer-panel .prayer-placeholder,
+html[data-theme="royal"] .prayer-panel-foot,
+html[data-theme="royal"] .prayer-panel .prayer-name { color: #D6C9DE; }
+html[data-theme="royal"] .prayer-panel .prayer-times-grid > div { background: #402451; border-color: #67477B; }
+html[data-theme="royal"] .section-hero { background: linear-gradient(135deg,#39204D,#281638); border-color: #59406A; }
+html[data-theme="royal"] .section-tile:hover,
+html[data-theme="royal"] .step4-learning-card:hover,
+html[data-theme="royal"] .step4-story-card:hover { border-color: #D9B56F; }
+html[data-theme="royal"] input,
+html[data-theme="royal"] select,
+html[data-theme="royal"] textarea,
+html[data-theme="royal"] .step4-prayer-settings input,
+html[data-theme="royal"] .step4-prayer-settings select { background: #1C1029; color: #F7F0FA; border-color: #715786; }
+html[data-theme="royal"] input::placeholder,
+html[data-theme="royal"] textarea::placeholder { color: #B7A4C4; }
+html[data-theme="royal"] .step4-prayer-settings { background: #281638; border-color: #59406A; }
+html[data-theme="royal"] .step4-prayer-settings h3,
+html[data-theme="royal"] .step4-prayer-settings summary { color: #E8C477; }
+html[data-theme="royal"] .step4-calendar-month-info { background: #39234B; border-left-color: #D9B56F; }
+html[data-theme="royal"] .step4-calendar-month-info h3 { color: #E8C477; }
+html[data-theme="royal"] .step4-calendar-month-info p { color: #D6C9DE; }
+html[data-theme="royal"] .step4-tool-tabs button,
+html[data-theme="royal"] .step4-actions button,
+html[data-theme="royal"] .section-view button { border-color: #715786; }
+html[data-theme="royal"] .step4-tool-tabs button[aria-selected="true"],
+html[data-theme="royal"] .step4-tool-tabs button.active { background: #7950A3; color: #FFFFFF; }
+html[data-theme="royal"] .section-view a,
+html[data-theme="royal"] .section-page a { color: #E8C477; }
+html[data-theme="royal"] .section-view .button,
+html[data-theme="royal"] .section-page .button { color: #F7F0FA; }
+html[data-theme="royal"] .section-view .button-primary,
+html[data-theme="royal"] .section-page .button-primary { color: #FFFFFF; }
+html[data-theme="royal"] .site-footer,
+html[data-theme="royal"] footer { background: #100817; color: #DCCFE5; border-color: #4A345A; }
+html[data-theme="royal"] .site-footer p,
+html[data-theme="royal"] .site-footer small,
+html[data-theme="royal"] footer p { color: #C5B5D0; }
+html[data-theme="royal"] .modal,
+html[data-theme="royal"] .search-overlay,
+html[data-theme="royal"] .search-dialog,
+html[data-theme="royal"] .toast { background-color: #281638; color: #F7F0FA; border-color: #59406A; }
+html[data-theme="royal"] .theme-toggle { box-shadow: inset 0 0 0 1px rgba(214,181,109,.12); }
+html[data-theme="royal"] .theme-toggle-icon { color: #F2D9A0; }
+.theme-toggle-icon { display: block; font-size: 21px; line-height: 1; transform: translateY(-1px); }
+.theme-toggle { flex-shrink: 0; }
+@media (max-width: 600px) {
+  .header-actions { gap: 8px; }
+  .theme-toggle, .search-open { width: 36px; height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="royal"] *, html[data-theme="royal"] *::before, html[data-theme="royal"] *::after { transition-duration: .01ms !important; }
+}
+
+/* Step 9: complete dark-theme coverage and Quran readability fixes */
+html[data-theme="royal"] {
+  --ivory:#170D24; --paper:#281638; --paper-warm:#342044; --emerald:#B58AE8;
+  --emerald-deep:#1D102D; --emerald-soft:#432653; --gold:#D9B56F; --gold-light:#F2D9A0;
+  --ink:#F7F0FA; --muted:#C5B5D0; --line:#59406A;
+}
+html[data-theme="royal"] .quick-card,
+html[data-theme="royal"] .newsletter-section,
+html[data-theme="royal"] .section-notice,
+html[data-theme="royal"] .step4-learning-intro,
+html[data-theme="royal"] .step4-learning-progress,
+html[data-theme="royal"] .step4-learning-card.is-complete,
+html[data-theme="royal"] .step4-prayer-time,
+html[data-theme="royal"] .step4-zakat-result,
+html[data-theme="royal"] .step4-calendar-cell,
+html[data-theme="royal"] .step4-tool-tabs,
+html[data-theme="royal"] .step4-count,
+html[data-theme="royal"] .qibla-center,
+html[data-theme="royal"] .hadith-reader-head,
+html[data-theme="royal"] .surah-reader-hero,
+html[data-theme="royal"] .ayah-translation,
+html[data-theme="royal"] .ayah-bookmark,
+html[data-theme="royal"] .quran-view-switch,
+html[data-theme="royal"] .quran-feature-pills span,
+html[data-theme="royal"] .step4-dua-translation,
+html[data-theme="royal"] .step4-round-icon {
+  background:#281638 !important; color:#F7F0FA; border-color:#59406A;
+}
+html[data-theme="royal"] .quran-hero,
+html[data-theme="royal"] .section-hero,
+html[data-theme="royal"] .hadith-page .hadith-hero,
+html[data-theme="royal"] .step4-page .section-hero,
+html[data-theme="royal"] .surah-reader-hero,
+html[data-theme="royal"] .step4-learning-intro,
+html[data-theme="royal"] .newsletter-section,
+html[data-theme="royal"] .hadith-reader-head {
+  background:linear-gradient(135deg,#432454 0%,#281638 62%,#1D102D 100%) !important;
+  border-color:#59406A !important; color:#F7F0FA !important;
+}
+html[data-theme="royal"] .surah-reader-hero h1,
+html[data-theme="royal"] .quran-hero h1,
+html[data-theme="royal"] .quran-hero h2,
+html[data-theme="royal"] .section-hero h1,
+html[data-theme="royal"] .hadith-reader-head h2,
+html[data-theme="royal"] .step4-learning-intro h2,
+html[data-theme="royal"] .newsletter-section h2 { color:#F7F0FA !important; }
+html[data-theme="royal"] .surah-reader-hero p,
+html[data-theme="royal"] .section-hero p,
+html[data-theme="royal"] .newsletter-section p,
+html[data-theme="royal"] .hadith-controls label,
+html[data-theme="royal"] .step4-prayer-time span,
+html[data-theme="royal"] .step4-calendar-cell,
+html[data-theme="royal"] .step4-learning-intro p,
+html[data-theme="royal"] .section-notice { color:#CDBED7 !important; }
+html[data-theme="royal"] .ayah-card { background:#281638 !important; border-color:#59406A !important; color:#F7F0FA !important; }
+html[data-theme="royal"] .ayah-card.ayah-highlight { background:#4B315E !important; border-color:#D9B56F !important; }
+html[data-theme="royal"] .ayah-arabic,
+html[data-theme="royal"] .hadith-book-arabic,
+html[data-theme="royal"] .hadith-arabic-title { color:#F2D9A0 !important; }
+html[data-theme="royal"] .ayah-translation { background:#1B1027 !important; color:#EDE3F2 !important; border:1px solid #4A345A; }
+html[data-theme="royal"] .ayah-translation > span { color:#D9B56F !important; }
+html[data-theme="royal"] .ayah-reference,
+html[data-theme="royal"] .quran-status,
+html[data-theme="royal"] .hadith-results-meta { color:#C5B5D0 !important; }
+html[data-theme="royal"] .ayah-bookmark { background:#342044 !important; color:#F2D9A0 !important; border-color:#715786 !important; }
+html[data-theme="royal"] .ayah-bookmark.saved { background:#57366B !important; color:#F2D9A0 !important; }
+html[data-theme="royal"] .quran-view-switch button { color:#D6C9DE !important; }
+html[data-theme="royal"] .quran-view-switch button.active,
+html[data-theme="royal"] .step4-tool-tabs button.active { background:#7950A3 !important; color:#FFFFFF !important; }
+html[data-theme="royal"] .quran-feature-pills span { color:#E8C477 !important; background:#342044 !important; }
+html[data-theme="royal"] .quick-icon,
+html[data-theme="royal"] .note-icon,
+html[data-theme="royal"] .step4-round-icon,
+html[data-theme="royal"] .step4-learning-level { background:#432653 !important; color:#E8C477 !important; border-color:#715786 !important; }
+html[data-theme="royal"] .step4-learning-progress-track { background:#4B365B !important; }
+html[data-theme="royal"] .step4-calendar-cell.is-today { background:#1B4433 !important; border-color:#D9B56F !important; }
+html[data-theme="royal"] .step4-count { border-color:#614875 !important; outline-color:#D9B56F !important; color:#F2D9A0 !important; }
+html[data-theme="royal"] .qibla-center { background:#342044 !important; color:#F2D9A0 !important; }
+html[data-theme="royal"] .feature-art,
+html[data-theme="royal"] .quran-art,
+html[data-theme="royal"] .hadith-art,
+html[data-theme="royal"] .tafseer-art,
+html[data-theme="royal"] .stories-art { background:linear-gradient(145deg,#38204A,#281638) !important; }
+html[data-theme="royal"] .book-shape::before,
+html[data-theme="royal"] .book-shape::after { background:#D9B56F !important; border-color:#F2D9A0 !important; }
+html[data-theme="royal"] .book-shape i { background:#7950A3 !important; }
+html[data-theme="royal"] .tafseer-lines { background:#342044 !important; border-color:#715786 !important; }
+html[data-theme="royal"] .tafseer-lines i { background:#B58AE8 !important; }
+html[data-theme="royal"] .hill-one { background:#54326B !important; }
+html[data-theme="royal"] .hill-two { background:#7950A3 !important; }
+html[data-theme="royal"] .step4-dua-translation { background:#1B1027 !important; color:#EDE3F2 !important; }
+html[data-theme="royal"] .step4-zakat-result { background:#281638 !important; border-color:#59406A !important; }
+html[data-theme="royal"] .step4-form-grid input,
+html[data-theme="royal"] .step4-form-grid select,
+html[data-theme="royal"] .step4-label select,
+html[data-theme="royal"] .step4-filter-row input,
+html[data-theme="royal"] .step4-name-tools input,
+html[data-theme="royal"] .reader-controls select,
+html[data-theme="royal"] .reader-controls input,
+html[data-theme="royal"] .reader-controls button,
+html[data-theme="royal"] .hadith-controls select,
+html[data-theme="royal"] .hadith-controls input,
+html[data-theme="royal"] .quran-search,
+html[data-theme="royal"] .quran-search input { background:#1C1029 !important; color:#F7F0FA !important; border-color:#715786 !important; }
+html[data-theme="royal"] .hadith-save-button { background:#432653 !important; color:#F2D9A0 !important; border-color:#715786 !important; }
+html[data-theme="royal"] .hadith-save-button.is-saved { background:#57366B !important; color:#F2D9A0 !important; }
+html[data-theme="royal"] .step4-learning-level { color:#F2D9A0 !important; }
+html[data-theme="royal"] .step4-calendar-month-info { background:#39234B !important; }
+html[data-theme="royal"] .step4-prayer-time strong { color:#F2D9A0 !important; }
+html[data-theme="royal"] .section-hero::after { color:rgba(214,181,109,.09) !important; }
+html[data-theme="royal"] .hero-trust .trust-avatars span { border-color:#170D24 !important; }
+html[data-theme="royal"] .button-light { background:#D9B56F !important; color:#170D24 !important; }
+html[data-theme="royal"] .button-light span { color:#170D24 !important; }
+
+/* Step 10: targeted contrast fixes reported during real dark-mode testing */
+html[data-theme="royal"] .daily-strip {
+  background: linear-gradient(135deg,#281638 0%,#1D102D 100%) !important;
+  border-color:#315B49 !important;
+  color:#F7F0FA !important;
+}
+html[data-theme="royal"] .daily-label strong,
+html[data-theme="royal"] .daily-quote p,
+html[data-theme="royal"] .daily-quote p:last-child,
+html[data-theme="royal"] .daily-quote p:last-child span { color:#F7F0FA !important; }
+html[data-theme="royal"] .daily-label small { color:#D9B56F !important; }
+html[data-theme="royal"] .daily-quote .arabic-quote { color:#F2D9A0 !important; }
+html[data-theme="royal"] .daily-strip .text-link { color:#F2D9A0 !important; }
+
+/* Quran: make the complete Surah opening banner and its meta chips dark */
+html[data-theme="royal"] .surah-reader-hero {
+  background:linear-gradient(135deg,#432454 0%,#281638 58%,#1D102D 100%) !important;
+  border-color:#315B49 !important;
+  color:#F7F0FA !important;
+}
+html[data-theme="royal"] .surah-reader-meta,
+html[data-theme="royal"] .surah-reader-meta span { color:#F2D9A0 !important; }
+html[data-theme="royal"] .surah-reader-meta span { background:#173D30 !important; border-color:#715786 !important; }
+html[data-theme="royal"] .surah-reader-hero h1,
+html[data-theme="royal"] .surah-reader-hero .surah-title-meaning { color:#F8F0FB !important; }
+html[data-theme="royal"] .surah-reader-hero .surah-title-arabic { color:#F2D9A0 !important; }
+
+/* Hadith library, statistics and narration text: brighter reading contrast */
+html[data-theme="royal"] .hadith-page .hadith-hero {
+  background:linear-gradient(135deg,#432454 0%,#281638 62%,#1D102D 100%) !important;
+  border-color:#315B49 !important;
+  color:#F7F0FA !important;
+}
+html[data-theme="royal"] .hadith-page .hadith-hero h1,
+html[data-theme="royal"] .hadith-page .hadith-hero h2,
+html[data-theme="royal"] .hadith-page .hadith-hero p { color:#F7F0FA !important; }
+html[data-theme="royal"] .hadith-stats span { border-left-color:#715786 !important; }
+html[data-theme="royal"] .hadith-stats strong { color:#F2D9A0 !important; }
+html[data-theme="royal"] .hadith-stats small { color:#D6C9DE !important; }
+html[data-theme="royal"] .section-empty-state {
+  background:#281638 !important; border-color:#715786 !important; color:#F7F0FA !important;
+}
+html[data-theme="royal"] .section-empty-state h3 { color:#F8F0FB !important; }
+html[data-theme="royal"] .section-empty-state p { color:#D6C9DE !important; }
+html[data-theme="royal"] .hadith-english { color:#F0F1E9 !important; }
+html[data-theme="royal"] .hadith-english.hadith-missing { color:#D6C69D !important; }
+html[data-theme="royal"] .hadith-arabic { color:#F2D9A0 !important; }
+html[data-theme="royal"] .hadith-narrator { color:#E0D3E8 !important; }
+html[data-theme="royal"] .hadith-entry-footer { color:#C1D0C6 !important; border-top-color:#614875 !important; }
+html[data-theme="royal"] .hadith-grade,
+html[data-theme="royal"] .hadith-ref { color:#D4B5F2 !important; }
+
+/* Source notes and explanatory copy across Stories, Duas and Learning */
+html[data-theme="royal"] .section-notice {
+  background:#281638 !important; border-color:#715786 !important; color:#E0D3E8 !important;
+}
+html[data-theme="royal"] .section-notice strong { color:#F2D9A0 !important; }
+html[data-theme="royal"] .section-notice .notice-icon { color:#F2D9A0 !important; }
+html[data-theme="royal"] .step4-story-card p,
+html[data-theme="royal"] .step4-dua-card p,
+html[data-theme="royal"] .step4-muted,
+html[data-theme="royal"] .step4-name-card p,
+html[data-theme="royal"] .step4-name-tools span { color:#D6C9DE !important; }
+html[data-theme="royal"] .step4-ref { color:#D4B5F2 !important; border-top-color:#614875 !important; }
+html[data-theme="royal"] .step4-dua-loaded small { color:#D6C9DE !important; }
+html[data-theme="royal"] .step4-dua-arabic,
+html[data-theme="royal"] .step4-dhikr { color:#F2D9A0 !important; }
+
+/* Tasbeeh dhikr choices and status text */
+html[data-theme="royal"] .step4-tasbeeh [data-dhikr],
+html[data-theme="royal"] .step4-tasbeeh .section-filter {
+  background:#173D30 !important; color:#F7F0FA !important; border-color:#715786 !important;
+}
+html[data-theme="royal"] .step4-tasbeeh [data-dhikr].active,
+html[data-theme="royal"] .step4-tasbeeh .section-filter.active {
+  background:#7950A3 !important; color:#FFFFFF !important; border-color:#D9B56F !important;
+}
+html[data-theme="royal"] .step4-tasbeeh .step4-status { color:#D6C9DE !important; }
+html[data-theme="royal"] .step4-tasbeeh .step4-muted { color:#D6C9DE !important; }
+
+/* Step 11: final dark-mode readability and Hadith layout fixes */
+html[data-theme="royal"] .hadith-page .section-empty-state {
+  display: block !important;
+  min-height: 120px;
+  margin-top: 20px !important;
+  padding: 28px 22px !important;
+  background: #281638 !important;
+  border: 1px solid #715786 !important;
+  color: #F7F0FA !important;
+}
+html[data-theme="royal"] .hadith-page .section-empty-state h3 {
+  display: block !important;
+  color: #F8F0FB !important;
+  opacity: 1 !important;
+}
+html[data-theme="royal"] .hadith-page .section-empty-state p {
+  color: #D6C9DE !important;
+  opacity: 1 !important;
+}
+html[data-theme="royal"] .hadith-entry-top .hadith-ref,
+html[data-theme="royal"] .hadith-entry .hadith-ref {
+  color: #F2D9A0 !important;
+  font-weight: 700 !important;
+}
+html[data-theme="royal"] .hadith-narrator {
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.7 !important;
+}
+html[data-theme="royal"] .hadith-english {
+  color: #E4EEE7 !important;
+  font-size: 14px !important;
+  line-height: 1.85 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+html[data-theme="royal"] .hadith-arabic {
+  color: #F5DFA6 !important;
+  line-height: 2.1 !important;
+}
+html[data-theme="royal"] #learningSubSearch {
+  background: #1D102D !important;
+  color: #F7F0FA !important;
+  border-color: #715786 !important;
+  box-shadow: none !important;
+}
+html[data-theme="royal"] #learningSubSearch::placeholder { color: #B9C9BE !important; }
+html[data-theme="royal"] #learningSubSearch:focus-visible {
+  border-color: #D9B56F !important;
+  box-shadow: 0 0 0 3px rgba(214,181,109,.18) !important;
+}
+
+
+/* Noor Step 12 — in-app Tafsir library */
+.tafsir-page .tafsir-library-tools{display:flex;gap:12px;align-items:center;margin-top:24px;max-width:760px}
+.tafsir-page .tafsir-library-tools input,.tafsir-page .tafsir-detail-tools input{min-width:0;flex:1;width:100%;border:1px solid var(--line,#d9d1bf);border-radius:12px;padding:13px 15px;background:var(--surface,#fffdf7);color:var(--text,#20352b);font:inherit}
+.tafsir-page .tafsir-library-tools span{white-space:nowrap;color:var(--muted,#69756c);font-size:.9rem}
+.tafsir-surah-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:26px 0}
+.tafsir-surah-card{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;align-items:center;gap:8px 12px;text-align:left;padding:16px;border:1px solid var(--line,#e4ddcd);border-radius:16px;background:var(--surface,#fffdf7);color:var(--text,#20352b);cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s}
+.tafsir-surah-card:hover{transform:translateY(-2px);border-color:var(--gold,#d4af66);box-shadow:0 8px 22px rgba(20,55,40,.08)}
+.tafsir-surah-number{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:rgba(23,107,80,.1);color:var(--emerald,#176b50);font-size:.78rem;font-weight:800}
+.tafsir-surah-name{display:flex;flex-direction:column;gap:4px;min-width:0}.tafsir-surah-name strong{font-size:.96rem}.tafsir-surah-name small,.tafsir-surah-count{font-size:.78rem;color:var(--muted,#69756c)}
+.tafsir-surah-arabic{grid-column:3;grid-row:1/3;font-family:var(--arabic,serif);font-size:1.4rem;color:var(--gold,#b8944e)}
+.tafsir-surah-count{grid-column:1/4;display:flex;justify-content:space-between;border-top:1px solid var(--line,#e4ddcd);padding-top:10px;margin-top:3px}.tafsir-surah-count b{color:var(--emerald,#176b50)}
+.tafsir-detail-tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;max-width:620px}.tafsir-detail-tools input{max-width:120px;flex:0 0 120px!important}
+.tafsir-ayah-list{display:grid;gap:16px;margin:28px 0}.tafsir-ayah-card{scroll-margin-top:24px;border:1px solid var(--line,#e4ddcd);border-radius:18px;padding:clamp(16px,3vw,26px);background:var(--surface,#fffdf7);color:var(--text,#20352b)}
+.tafsir-ayah-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.tafsir-ayah-badge{font-size:.8rem;font-weight:800;color:var(--emerald,#176b50);background:rgba(23,107,80,.1);padding:7px 11px;border-radius:999px}.tafsir-verified,.tafsir-pending{font-size:.75rem;padding:6px 9px;border-radius:999px}.tafsir-verified{color:#176b50;background:rgba(23,107,80,.1)}.tafsir-pending{color:var(--muted,#69756c);background:rgba(120,120,120,.1)}
+.tafsir-ayah-arabic{font-family:"IndopakNastaleeq",serif;font-size:34px;line-height:2;text-align:right;margin:20px 0;color:var(--text,#20352b)}.tafsir-translation-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.tafsir-translation-grid>div{padding:14px;border-radius:12px;background:rgba(120,120,120,.055)}.tafsir-translation-grid small{font-size:.68rem;letter-spacing:.08em;font-weight:800;color:var(--muted,#69756c)}.tafsir-translation-grid p{margin:7px 0 0;line-height:1.7}.tafsir-explanation{border-top:1px solid var(--line,#e4ddcd);margin-top:18px;padding-top:17px}.tafsir-explanation h3{font-size:1.08rem;margin:0 0 8px}.tafsir-explanation>p{line-height:1.8;margin:0}.tafsir-source{font-size:.82rem;color:var(--muted,#69756c);margin-top:12px;line-height:1.6}
+
+/* Tafsir uses the supplied Indo-Pak Nastaleeq font and accessible size controls */
+.tafsir-page .tafsir-surah-arabic{font-family:"IndopakNastaleeq",serif}
+.tafsir-display-mode{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.88rem;color:var(--text,#20352b)}.tafsir-display-mode select{min-height:42px;max-width:100%;padding:8px 32px 8px 11px;border:1px solid var(--line,#d9d1bf);border-radius:10px;background:var(--surface,#fffdf7);color:var(--text,#20352b);font:inherit}.tafsir-page [data-tafsir-language][hidden]{display:none!important}
+.tafsir-font-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:5px 8px;border:1px solid var(--line,#d9d1bf);border-radius:12px;background:var(--surface,#fffdf7);color:var(--text,#20352b)}
+.tafsir-font-controls span{font-size:.82rem;color:var(--muted,#69756c);margin-right:3px}
+.tafsir-font-controls button{width:36px;height:36px;border:1px solid var(--line,#d9d1bf);border-radius:9px;background:transparent;color:var(--text,#20352b);font-weight:800;cursor:pointer}
+.tafsir-font-controls button:hover{border-color:var(--gold,#d4af66)}
+.tafsir-font-controls strong{min-width:42px;text-align:center;font-size:.8rem}
+html[data-theme="royal"] .tafsir-font-controls{background:#102a22;color:#f4f0e5;border-color:#3c6554}
+html[data-theme="royal"] .tafsir-font-controls button{color:#f4f0e5;border-color:#3c6554}
+
+html[data-theme="royal"] .tafsir-display-mode select,html[data-theme="royal"] .tafsir-page .tafsir-library-tools input,html[data-theme="royal"] .tafsir-page .tafsir-detail-tools input{background:#102a22!important;color:#f4f0e5!important;border-color:#3c6554!important}
+html[data-theme="royal"] .tafsir-surah-card,html[data-theme="royal"] .tafsir-ayah-card{background:#102a22!important;color:#f4f0e5!important;border-color:#614875!important}
+html[data-theme="royal"] .tafsir-ayah-arabic{color:#f7f0df!important}html[data-theme="royal"] .tafsir-translation-grid>div{background:#17382d!important}html[data-theme="royal"] .tafsir-surah-number,html[data-theme="royal"] .tafsir-ayah-badge{background:#214b3b!important;color:#e5c77e!important}html[data-theme="royal"] .tafsir-verified{background:#214b3b!important;color:#cde7d7!important}
+@media(max-width:900px){.tafsir-surah-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.tafsir-surah-grid{grid-template-columns:1fr;gap:9px}.tafsir-surah-card{padding:13px}.tafsir-translation-grid{grid-template-columns:1fr}.tafsir-page .tafsir-library-tools{align-items:stretch;flex-wrap:wrap}.tafsir-page .tafsir-library-tools input{flex-basis:100%}.tafsir-detail-tools{gap:8px}.tafsir-detail-tools .button{flex:1}}
+
+
+/* Step 28 — calm, consistent page opening and Quran navigation */
+@keyframes noorPageEnter {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.section-page { animation: noorPageEnter .34s cubic-bezier(.2,.7,.2,1) both; will-change: opacity, transform; }
+.surah-card, .juz-card, .section-tile, .hadith-book-card, .hadith-entry, .ayah-card {
+  transition: opacity .22s ease, transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.surah-card:active, .juz-card:active, .section-tile:active { transform: scale(.985); }
+.surah-pagination { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 16px; padding:10px 12px; border:1px solid var(--line); background:var(--paper); }
+.surah-pagination button { min-height:36px; padding:8px 12px; border:1px solid #DAD8CB; background:#FFFEFA; color:var(--emerald); font-family:var(--sans); font-size:10px; font-weight:600; line-height:1.2; cursor:pointer; transition:background .2s ease, color .2s ease, transform .2s ease; }
+.surah-pagination button:hover:not(:disabled) { background:var(--emerald); color:#fff; transform:translateY(-1px); }
+.surah-pagination button:disabled { opacity:.35; cursor:not-allowed; }
+.surah-pagination-count { color:var(--muted); font-size:10px; font-weight:700; white-space:nowrap; }
+@media (max-width:560px) {
+  .surah-grid { grid-template-columns:minmax(0,1fr); }
+  .surah-pagination { gap:6px; padding:8px; }
+  .surah-pagination button { padding:8px; font-size:9px; }
+  .surah-pagination-count { font-size:9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-page { animation:none !important; }
+  .surah-card, .juz-card, .section-tile, .hadith-book-card, .hadith-entry, .ayah-card, .surah-pagination button { transition:none !important; }
+}
+
+
+/* Theme picker: Light, Dark and Royal Purple */
+.theme-picker-wrap{position:relative;display:inline-flex;align-items:center}
+.theme-toggle{gap:8px;padding-inline:12px;white-space:nowrap}
+.theme-toggle-label{display:none !important}
+.theme-picker-menu{position:absolute;z-index:1200;right:0;top:calc(100% + 10px);width:190px;padding:7px;border:1px solid var(--line);border-radius:14px;background:var(--paper);box-shadow:0 16px 40px rgba(0,0,0,.18)}
+.theme-picker-menu[hidden]{display:none}
+.theme-picker-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:10px;border:0;border-radius:9px;background:transparent;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.theme-picker-menu button:hover,.theme-picker-menu button[aria-checked="true"]{background:var(--paper-warm)}
+.theme-choice-swatch{width:17px;height:17px;border-radius:50%;border:2px solid rgba(128,128,128,.35);flex:0 0 17px}
+.theme-choice-light{background:linear-gradient(135deg,#F5F0E6 50%,#D6B56D 50%)}
+.theme-choice-dark{background:linear-gradient(135deg,#071D18 50%,#D6B56D 50%)}
+.theme-choice-royal{background:linear-gradient(135deg,#281638 50%,#D9B56F 50%)}
+.theme-choice-check{margin-left:auto;opacity:0;color:var(--gold);font-weight:800}
+.theme-picker-menu button[aria-checked="true"] .theme-choice-check{opacity:1}
+html[data-theme="royal"]{color-scheme:dark}
+html[data-theme="royal"] body{--ivory:#170D24;--paper:#281638;--paper-warm:#342044;--emerald:#B58AE8;--emerald-deep:#1D102D;--emerald-soft:#432653;--gold:#D9B56F;--gold-light:#F2D9A0;--ink:#F7F0FA;--muted:#C5B5D0;--line:#59406A;background:#170D24;color:#F7F0FA}
+html[data-theme="royal"] .theme-toggle{border-color:#715786;background:#281638;color:#F2D9A0}
+html[data-theme="royal"] .theme-toggle-icon{color:#F2D9A0}
+@media(max-width:600px){.theme-toggle{padding-inline:8px}.theme-picker-menu{right:0}}
+
+
+/* Step 45: centre the theme toggle icon inside its button. */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+}
+.theme-toggle .theme-toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+    margin: 0;
+    transform: none;
+}

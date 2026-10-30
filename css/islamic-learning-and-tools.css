@@ -1,0 +1,17 @@
+
+/* Islamic Learning: persistent back navigation inside every subsection */
+.learning-back-row{display:flex;align-items:center;justify-content:flex-start;margin:0 0 1rem;}
+.learning-back-top{display:inline-flex;align-items:center;gap:.45rem;min-height:42px;white-space:normal;}
+@media(max-width:600px){.learning-back-row{margin-bottom:.75rem}.learning-back-top{width:100%;justify-content:center}}
+
+/* Quran Stories: all references open the local Noor Quran reader */
+.step4-story-refs{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.65rem}
+.step4-story-refs .button{max-width:100%;white-space:normal;text-align:left;line-height:1.4}
+@media(max-width:480px){.step4-story-refs{display:grid;grid-template-columns:minmax(0,1fr)}.step4-story-refs .button{width:100%;min-width:0;justify-content:flex-start}}
+
+/* Surah-to-Surah navigation at the beginning and end of each Tafsir page */
+.tafsir-surah-navigation{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 24px;padding:12px 14px;border:1px solid var(--line,rgba(120,120,120,.22));border-radius:14px;background:var(--surface,rgba(127,127,127,.04));}
+.tafsir-surah-navigation span{font-size:.88rem;opacity:.75;text-align:center;}
+.tafsir-surah-navigation button:disabled{opacity:.4;cursor:not-allowed;}
+.tafsir-surah-navigation-bottom{margin-top:24px;margin-bottom:24px;}
+@media(max-width:520px){.tafsir-surah-navigation{gap:7px;padding:10px 8px;}.tafsir-surah-navigation button{padding:9px 10px;font-size:.78rem;}.tafsir-surah-navigation span{font-size:.75rem;}}

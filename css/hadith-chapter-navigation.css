@@ -1,0 +1,15 @@
+/* Step 42: Hadith collection reader chapter navigation */
+.hadith-collection-page .hadith-reader-panel-page { margin-top: 22px; }
+.hadith-pagination { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); align-items:center; gap:14px; margin:24px 0 8px; }
+.hadith-pagination .hadith-chapter-nav { min-height:46px; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 18px; border:1px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink); font-weight:650; line-height:1.25; white-space:normal; }
+.hadith-pagination #hadithPrevious { justify-self:start; }
+.hadith-pagination #hadithNext { justify-self:end; }
+.hadith-pagination .hadith-chapter-position { color:var(--muted); font-size:12px; font-weight:600; text-align:center; white-space:nowrap; }
+.hadith-pagination .hadith-chapter-nav:disabled { opacity:.42; cursor:not-allowed; transform:none; box-shadow:none; }
+html[data-theme="dark"] .hadith-pagination .hadith-chapter-nav { background:#15372B !important; border-color:#426858 !important; color:#F3F0E7 !important; }
+html[data-theme="dark"] .hadith-pagination .hadith-chapter-position { color:#C2D0C7 !important; }
+@media (max-width:600px) {
+  .hadith-pagination { grid-template-columns:1fr 1fr; gap:10px; }
+  .hadith-pagination .hadith-chapter-position { grid-column:1 / -1; grid-row:1; }
+  .hadith-pagination #hadithPrevious, .hadith-pagination #hadithNext { width:100%; justify-self:stretch; min-height:48px; }
+}

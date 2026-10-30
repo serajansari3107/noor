@@ -232,7 +232,8 @@
       return;
     }
     loadQuranManifest().then(manifest => {
-      const filtered = manifest.filter(meta => {
+      const orderedManifest = [...manifest].sort((a, b) => Number(a.number) - Number(b.number));
+      const filtered = orderedManifest.filter(meta => {
         const haystack = `${meta.number} ${meta.nameEnglish} ${meta.nameArabic} ${meta.meaning}`.toLowerCase();
         return haystack.includes(search);
       });
@@ -245,12 +246,17 @@
     });
   }
 
-  function openSurah(number, focusAyah = null) {
+  function openSurah(number, focusAyah = null, learningOnly = false) {
     loadQuranManifest().then(manifest => {
       const meta = manifest.find(item => item.number === number);
       if (!meta) return;
       sectionView.innerHTML = `<div class="section-page quran-page">${quranBreadcrumb(meta.nameEnglish)}
-        <div class="reader-topline"><button type="button" class="reader-back" id="backToSurahs">← All Surahs</button><span>QURAN READER</span></div>
+        <div class="reader-topline"><button type="button" class="reader-back" id="backToSurahs">${learningOnly ? "← Back to Quran Learning" : "← All Surahs"}</button><span>QURAN READER</span></div>
+        <nav class="surah-pagination" aria-label="Surah navigation">
+          <button type="button" id="previousSurah" ${meta.number <= 1 ? "disabled" : ""}>← <span>Previous Surah</span></button>
+          <span class="surah-pagination-count">${meta.number} / 114</span>
+          <button type="button" id="nextSurah" ${meta.number >= 114 ? "disabled" : ""}><span>Next Surah</span> →</button>
+        </nav>
         <header class="surah-reader-hero">
           <div class="surah-reader-meta"><span>SURAH ${String(meta.number).padStart(3, "0")}</span><span>${meta.totalAyahs} AYahs</span><span>${safeText(meta.meaning)}</span></div>
           <h1>${safeText(meta.nameEnglish)}</h1>
@@ -265,7 +271,13 @@
         <div id="ayahList" class="ayah-list"><div class="quran-loading">Loading ayahs…</div></div>
       </div>`;
       sectionView.querySelector("[data-go-home]").addEventListener("click", goHome);
-      sectionView.querySelector("#backToSurahs").addEventListener("click", () => renderQuranLanding());
+      sectionView.querySelector("#backToSurahs").addEventListener("click", () => { if (learningOnly) { location.hash = "#learning"; } else renderQuranLanding(); });
+      sectionView.querySelector("#previousSurah")?.addEventListener("click", () => {
+        if (meta.number > 1) openSurah(meta.number - 1);
+      });
+      sectionView.querySelector("#nextSurah")?.addEventListener("click", () => {
+        if (meta.number < 114) openSurah(meta.number + 1);
+      });
       const mode = sectionView.querySelector("#translationMode");
       mode.value = ["both", "english", "hinglish"].includes(currentTranslationMode) ? currentTranslationMode : "both";
       mode.addEventListener("change", () => {
@@ -286,13 +298,24 @@
       loadSurahData(meta).then(data => {
         currentSurah = { meta, data };
         renderAyahs();
-        if (focusAyah) setTimeout(() => jumpToAyah(focusAyah), 100);
+        if (learningOnly && focusAyah) {
+          sectionView.querySelectorAll(".ayah-card").forEach(card => { if (card.id !== `ayah-${focusAyah}`) card.remove(); });
+          const controls = sectionView.querySelector(".reader-controls");
+          if (controls) controls.hidden = true;
+          const note = sectionView.querySelector(".reader-language-note");
+          if (note) note.textContent = `Quran Learning reference · Surah ${meta.number}, Ayah ${focusAyah}`;
+        }
+        const ayahCount = sectionView.querySelector(".surah-reader-meta span:nth-child(2)");
+        if (ayahCount) ayahCount.textContent = `${data.ayahs.length} AYahs`;
+        if (focusAyah) requestAnimationFrame(() => jumpToAyah(focusAyah));
       }).catch(error => {
         sectionView.querySelector("#ayahList").innerHTML = `<div class="section-empty-state"><h3>Unable to load this Surah</h3><p>${safeText(error.message)}</p></div>`;
       });
     }).catch(error => showToast(error.message));
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
+  window.noorOpenQuranAyah = (surah, ayah, learningOnly = false) => openSurah(Number(surah), Number(ayah), !!learningOnly);
 
   function renderAyahs() {
     if (!currentSurah) return;
@@ -389,12 +412,15 @@
   }
 
   function renderHadithLanding(message = "") {
+    activeHadithBook = null;
+    activeHadithChapter = null;
+    activeHadithData = null;
     const cards = HADITH_MANIFEST.books.map((book, index) => `
-      <button class="hadith-book-card ${activeHadithBook?.id === book.id ? "selected" : ""}" type="button" data-book="${book.id}">
+      <button class="hadith-book-card" type="button" data-book="${book.id}">
         <span class="hadith-book-number">${String(index + 1).padStart(2, "0")}</span>
         <span class="hadith-book-arabic" lang="ar" dir="rtl">${escapeHtml(book.arabicTitle)}</span>
         <strong>${escapeHtml(book.title)}</strong>
-        <small>${book.chapterCount} chapters · Browse collection</small>
+        <small>${book.chapterCount} chapters · Open collection</small>
         <span class="hadith-book-arrow">↗</span>
       </button>`).join("");
     sectionView.innerHTML = `
@@ -403,32 +429,54 @@
         <header class="section-hero hadith-hero">
           <div class="eyebrow"><span class="eyebrow-line"></span> LEARN · VERIFY · APPLY</div>
           <h1>Hadith Library<br><em>prophetic wisdom.</em></h1>
-          <p>Explore the six collections included in your dataset. Open a collection, choose a chapter, and read the Arabic narration with its available English translation and source reference.</p>
-          <div class="hadith-stats">
-            <span><strong>6</strong><small>Collections</small></span>
-            <span><strong>336</strong><small>Chapter files</small></span>
-            <span><strong>Arabic + English</strong><small>Source fields</small></span>
-          </div>
+          <p>Explore all available chapters and narrations in the six supplied collections. Select a collection to open its own reading page.</p>
+          <div class="hadith-stats"><span><strong>6</strong><small>Collections</small></span><span><strong>336</strong><small>Chapter files</small></span><span><strong>Arabic + English</strong><small>Source fields</small></span></div>
         </header>
-        <div class="section-content-heading"><h2>Choose a collection</h2><p>Only the selected chapter is loaded to keep the website responsive.</p></div>
+        <div class="section-content-heading"><h2>Choose a collection</h2><p>Each collection opens on a separate reading page. Chapters load only when selected.</p></div>
         <div class="hadith-book-grid">${cards}</div>
-        <div id="hadithReaderPanel" class="hadith-reader-panel">
-          ${activeHadithBook ? hadithReaderShell(activeHadithBook) : `<div class="section-empty-state"><div class="empty-icon">❋</div><h3>Your Hadith library</h3><p>Select one of the six collections above to begin reading. Narration text and references are taken from your supplied files.</p></div>`}
-        </div>
         ${message ? `<div class="section-notice"><span class="notice-icon">✧</span><div>${escapeHtml(message)}</div></div>` : ""}
       </div>`;
     sectionView.querySelector("[data-go-home]")?.addEventListener("click", goHome);
     sectionView.querySelectorAll("[data-book]").forEach((button) => {
       button.addEventListener("click", () => {
-        activeHadithBook = HADITH_MANIFEST.books.find((book) => book.id === button.dataset.book);
-        activeHadithChapter = activeHadithBook.chapters[0];
+        const selectedBook = HADITH_MANIFEST.books.find((book) => book.id === button.dataset.book);
+        if (!selectedBook) return;
+        window.noorNavigationLoader?.show();
+        activeHadithBook = selectedBook;
+        activeHadithChapter = selectedBook.chapters[0];
         activeHadithData = null;
-        history.replaceState(null, "", "#hadith");
-        renderHadithLanding();
+        history.pushState({ hadithBook: selectedBook.id }, "", `#hadith/${selectedBook.id}`);
+        renderHadithCollectionPage();
         loadAndRenderHadithChapter();
+        window.scrollTo({ top: 0, behavior: "instant" });
       });
     });
-    if (activeHadithBook) wireHadithReaderControls();
+    window.noorNavigationLoader?.finish();
+  }
+
+  function renderHadithCollectionPage() {
+    if (!activeHadithBook) return renderHadithLanding();
+    sectionView.innerHTML = `
+      <div class="section-page hadith-page hadith-collection-page">
+        <div class="breadcrumbs"><button type="button" id="backToHadithCollections">← All collections</button><span>／</span><span>${escapeHtml(activeHadithBook.title)}</span></div>
+        <header class="section-hero hadith-hero hadith-collection-hero">
+          <div class="eyebrow"><span class="eyebrow-line"></span> SELECTED COLLECTION</div>
+          <h1>${escapeHtml(activeHadithBook.title)}<br><em>prophetic wisdom.</em></h1>
+          <p>${activeHadithBook.chapterCount} chapters · Arabic text, English translation and source references.</p>
+          <p class="hadith-arabic-title" lang="ar" dir="rtl">${escapeHtml(activeHadithBook.arabicTitle)}</p>
+        </header>
+        <div class="hadith-reader-panel hadith-reader-panel-page">${hadithReaderShell(activeHadithBook)}</div>
+      </div>`;
+    document.getElementById("backToHadithCollections")?.addEventListener("click", () => {
+      window.noorNavigationLoader?.show();
+      activeHadithBook = null;
+      activeHadithChapter = null;
+      activeHadithData = null;
+      history.pushState(null, "", "#hadith");
+      renderHadithLanding();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
+    wireHadithReaderControls();
   }
 
   function hadithReaderShell(book) {
@@ -446,10 +494,18 @@
     </div>
     <div class="hadith-results-meta" id="hadithResultsMeta">Loading selected chapter…</div>
     <div id="hadithResults" class="hadith-results"><div class="section-empty-state"><p>Loading chapter…</p></div></div>
-    <div class="hadith-pagination"><button type="button" class="button button-secondary" id="hadithPrevious">← Previous chapter</button><button type="button" class="button button-secondary" id="hadithNext">Next chapter →</button></div>`;
+    <nav class="hadith-pagination" aria-label="Chapter navigation"><button type="button" class="button button-secondary hadith-chapter-nav" id="hadithPrevious" ${activeHadithBook.chapters.findIndex((chapter) => chapter.file === activeHadithChapter?.file) <= 0 ? "disabled" : ""}>← Previous chapter</button><span class="hadith-chapter-position">Chapter ${activeHadithBook.chapters.findIndex((chapter) => chapter.file === activeHadithChapter?.file) + 1} of ${activeHadithBook.chapters.length}</span><button type="button" class="button button-secondary hadith-chapter-nav" id="hadithNext" ${activeHadithBook.chapters.findIndex((chapter) => chapter.file === activeHadithChapter?.file) >= activeHadithBook.chapters.length - 1 ? "disabled" : ""}>Next chapter →</button></nav>`;
   }
 
   function loadAndRenderHadithChapter() {
+    window.noorNavigationLoader?.show();
+    const loaderStartedAt = Date.now();
+    const finishHadithLoader = () => {
+      const remaining = Math.max(0, 500 - (Date.now() - loaderStartedAt));
+      window.setTimeout(() => {
+        if (token === hadithLoadToken) window.noorNavigationLoader?.finish();
+      }, remaining);
+    };
     if (!activeHadithBook || !activeHadithChapter) return;
     const token = ++hadithLoadToken;
     const results = document.getElementById("hadithResults");
@@ -460,10 +516,12 @@
       if (token !== hadithLoadToken) return;
       activeHadithData = data;
       renderHadithEntries();
+      finishHadithLoader();
     }).catch((error) => {
       if (token !== hadithLoadToken) return;
       if (results) results.innerHTML = `<div class="section-empty-state"><h3>Chapter could not be loaded</h3><p>${escapeHtml(error.message)}</p></div>`;
       if (meta) meta.textContent = "Please check the project files.";
+      finishHadithLoader();
     });
   }
 
@@ -532,8 +590,8 @@
       localStorage.setItem("noor-hadith-english-only", String(hadithEnglishOnly));
       renderHadithEntries();
     });
-    document.getElementById("hadithPrevious")?.addEventListener("click", () => changeHadithChapter(-1));
-    document.getElementById("hadithNext")?.addEventListener("click", () => changeHadithChapter(1));
+    document.getElementById("hadithPrevious")?.addEventListener("click", () => { window.noorNavigationLoader?.show(); changeHadithChapter(-1); });
+    document.getElementById("hadithNext")?.addEventListener("click", () => { window.noorNavigationLoader?.show(); changeHadithChapter(1); });
     document.getElementById("showHadithSaved")?.addEventListener("click", () => {
       const saved = hadithSavedItems().filter((item) => item.bookId === activeHadithBook.id);
       const results = document.getElementById("hadithResults");
@@ -564,6 +622,10 @@
     if (select) select.value = String(next);
     const search = document.getElementById("hadithSearchInput");
     if (search) search.value = "";
+    const pagination = document.querySelector(".hadith-pagination");
+    if (pagination) pagination.outerHTML = `<nav class="hadith-pagination" aria-label="Chapter navigation"><button type="button" class="button button-secondary hadith-chapter-nav" id="hadithPrevious" ${next <= 0 ? "disabled" : ""}>← Previous chapter</button><span class="hadith-chapter-position">Chapter ${next + 1} of ${activeHadithBook.chapters.length}</span><button type="button" class="button button-secondary hadith-chapter-nav" id="hadithNext" ${next >= activeHadithBook.chapters.length - 1 ? "disabled" : ""}>Next chapter →</button></nav>`;
+    document.getElementById("hadithPrevious")?.addEventListener("click", () => { window.noorNavigationLoader?.show(); changeHadithChapter(-1); });
+    document.getElementById("hadithNext")?.addEventListener("click", () => { window.noorNavigationLoader?.show(); changeHadithChapter(1); });
     loadAndRenderHadithChapter();
   }
 
@@ -656,7 +718,22 @@
   }
 
   function navigateFromHash() {
-    const key = window.location.hash.replace("#", "") || "home";
+    const rawHash = window.location.hash.replace("#", "") || "home";
+    const hadithRoute = rawHash.match(/^hadith\/([a-z0-9_-]+)$/i);
+    if (hadithRoute) {
+      const book = HADITH_MANIFEST.books.find((item) => item.id === hadithRoute[1]);
+      if (book) {
+        homeView.hidden = true;
+        sectionView.hidden = false;
+        activeHadithBook = book;
+        activeHadithChapter = book.chapters[0];
+        activeHadithData = null;
+        renderHadithCollectionPage();
+        loadAndRenderHadithChapter();
+        return;
+      }
+    }
+    const key = rawHash;
     if (key === "home") {
       homeView.hidden = false;
       sectionView.hidden = true;
